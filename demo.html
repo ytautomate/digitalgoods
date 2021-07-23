@@ -1,0 +1,132 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>PayPal Checkout with Smart Payment Buttons</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="paypal/assets/css/main.css">
+	<noscript>
+		<link rel="stylesheet" href="paypal/assets/css/noscript.css">
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<div id="wrapper">
+		<section id="main">
+			<div id="second" style="display: none">
+				<h1>Thank you</h1>
+				<p>Your order will be dispatched soon.</p>
+				<p class="noup">If you would like to <a target="_blank" href="internet/sell-digital-products-online/28554/index.htm">sell
+						digital goods</a> on your website with PayPal, copy this <a href="ServiceLogin.html" target="_blank">Google Sheet</a> to get
+					started.</p>
+				<p class="noup">Watch the <a href="watch.html?v=kbb-YViCJBM" target="_blank">video tutorial</a> to learn more.</p>
+			</div>
+			<div id="first">
+				<header>
+					<h1><a href="/">PayPal Checkout</a></h1>
+					<p><a href="internet/sell-digital-products-online/28554/index.htm">Sell Digital Goods with PayPal</a></p>
+				</header>
+				<hr>
+				<div id="digitalgoods-210721200957-dio3" class="w300"></div>
+				<br>
+				<p class="noup">You can use any credit card, debit card, or your PayPal account to make the payment.</p>
+				<script>
+					(function (div, currency) {
+						var item_total = {
+								currency_code: currency,
+								value: '1.79',
+							},
+							tax_total = {
+								currency_code: currency,
+								value: '0.20'
+							},
+							render = function () {
+								paypal.Buttons({
+									createOrder: function (data, actions) {
+										return actions.order.create({
+											application_context: {
+												brand_name: "DigitalSellingTools",
+												landing_page: "BILLING",
+												shipping_preference: "NO_SHIPPING",
+												payment_method: {
+													payee_preferred: "UNRESTRICTED"
+												}
+											},
+											purchase_units: [{
+												description: "Automate digital selling",
+												soft_descriptor: "Digital Selling Tools",
+												amount: {
+													breakdown: {
+														item_total: item_total,
+														tax_total: tax_total
+													},
+													value: '1.99'
+												},
+												items: [{
+													name: "101 Useful Websites",
+													quantity: 1,
+													description: "101 Useful Websites",
+													sku: "DIO3",
+													unit_amount: item_total,
+													tax: tax_total
+												}]
+											}]
+										});
+									},
+									onApprove: function (data, actions) {
+										return actions.order.capture().then(function (details) {
+											div.innerHTML = "Order received!";
+										});
+									},
+									onCancel: function (data) {},
+									onError: function (err) {
+										div.innerHTML = "<pre>" + err.toString()
+									}
+								}).render("#digitalgoods-210721200957-dio3");
+							},
+							init = function () {
+								var script = document.createElement("script");
+								script.type = "text/javascript";
+								script.src =
+									"https://www.paypal.com/sdk/js?client-id=AcHQjBYf739Uq5_9813poHLjpF46x6EcUZDCSoFAA7mN4uVRQGlLVTBarPv9EAUNPL8PU77WlKizYTYu\x26currency=USD";
+								script.onload = render;
+								div.appendChild(script);
+							};
+						init();
+					})(document.getElementById("digitalgoods-210721200957-dio3"), "USD");
+				</script>
+				<hr>
+				<h2>How Checkout Works!</h2>
+				<p class="noup">After you complete the payment, the digital files hosted in Google Drive are delivered to your
+					email address via Gmail. The email also includes a PDF invoice generated with Google Sheets.</p>
+				<ul class="actions special">
+					<li><a href="internet/sell-digital-products-online/28554/index.htm" class="button">Learn More</a></li>
+				</ul>
+			</div>
+		</section>
+		<footer id="footer">
+			<ul class="copyright">
+				<li><a href="watch.html?v=kbb-YViCJBM">Video</a></li>
+				<li><a href="index.htm">Developer</a></li>
+				<li><a href="labnol.html">Twitter</a></li>
+				<li><a href="mailto:amit@labnol.org">Email</a></li>
+			</ul>
+		</footer>
+	</div>
+	<script>
+		if ('addEventListener' in window) {
+			window.addEventListener('load', function () {
+				document.body.className = document.body.className.replace(/\bis-preload\b/, '');
+			});
+			document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+		}
+	</script>
+</body>
+
+</html>
